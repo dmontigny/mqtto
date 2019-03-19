@@ -6,7 +6,7 @@ from socket import gethostname
 # This is the Subscriber
 ping = 'dave2'
 pong = 'dave1'
-sub =  "durney/test"
+sub = "durney/test"
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
@@ -27,6 +27,9 @@ def on_message(client, userdata, msg):
             client.publish(sub, '{}: pung me'.format(pong))
         elif cmd == 'pung me':
             client.publish(sub, '{} punged!'.format(ping))
+        elif cmd == 'wait':
+            client.publish(sub, '{} waiting!'.format(ping))
+            pass
     elif msg[5] == ':':
         print('not my message', msg)
         pass
@@ -34,9 +37,12 @@ def on_message(client, userdata, msg):
         print('message: ', msg)
         client.disconnect()
 
-client = mqtt.Client('dave2')
-client.connect('kermit', 1883, 60) if gethostname() == 'davelx' \
-    else client.connect('us1701', 1883, 60)
+client = mqtt.Client(ping)
+# client.connect('kermit', 1883, 60) if gethostname() == 'davelx' \
+#     else client.connect('us1701', 1883, 60)
+
+client.connect('52.0.117.162', 1883, 60)
+
 
 client.subscribe(sub)
 client.publish(sub, '{}: ping me'.format(pong))

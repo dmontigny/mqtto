@@ -27,8 +27,11 @@ class ClassSub():
         self.logger.info('attempting connection')
         self.subname = sub_name
         self.client = mqtt.Client(self.subname)
-        self.client.connect('kermit', 1883, 60) if gethostname() == 'davelx' \
-            else self.client.connect('us1701', 1883, 60)
+
+        self.client.connect('52.0.117.162', 1883, 60)
+
+        # self.client.connect('kermit', 1883, 60) if gethostname() == 'davelx' \
+        #     else self.client.connect('us1701', 1883, 60)
 
     def mqtt_on_connect(self, client, userdata, flags, rc):
         self.logger.info("connected with result code " + str(rc))
@@ -68,7 +71,8 @@ class ClassSub():
         # self.sub_name = sub_name
         self.connect(sub_name)
         self.subscribe("durney/test")
-        self.publish("durney/test", "Hi dave2")
+        self.publish("durney/test", "dave2: wait")
+        print('{} checked in'.format('dave3'))
 
         rc = 0
         while rc == 0:
