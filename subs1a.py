@@ -6,7 +6,7 @@ from socket import gethostname
 # This is the Subscriber
 ping = 'dave1'
 pong = 'dave2'
-sub =  "durney/test"
+sub = "durney/test"
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
@@ -15,7 +15,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     msg = msg.payload.decode()
-    # print('incoming:', msg)
+    # print('incoming:', client, userdata, msg)
     # print(msg[:6], '*{}:*'.format(ping))
     if msg[:6] == '{}:'.format(ping):
         cmd = msg[7:]
