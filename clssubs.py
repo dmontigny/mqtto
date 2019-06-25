@@ -12,6 +12,7 @@ class ClassSub():
     def __init__(self, clientid = None):
         self._mqttc = mqtt.Client(clientid)
         self.logname = path.basename(sys.argv[0][:-3]) + '.log'
+        print(self.logname)
         self.logger = None
         self._mqttc.on_message = self.mqtt_on_message
         self._mqttc.on_connect = self.mqtt_on_connect
