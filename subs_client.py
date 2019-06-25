@@ -11,7 +11,7 @@ from clssubs import ClassSub
 sub1 = ClassSub()
 sub1.configure_logger()
 
-rc = sub1.run('dave1')
+rc = sub1.run('dave3')
 print("rc: "+str(rc))
 
 # sub1.connect('dave1')

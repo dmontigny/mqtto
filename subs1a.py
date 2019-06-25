@@ -34,9 +34,11 @@ def on_message(client, userdata, msg):
         print('message: ', msg)
         client.disconnect()
 
-client = mqtt.Client('dave1')
-client.connect('kermit', 1883, 60) if gethostname() == 'davelx' \
-    else client.connect('us1701', 1883, 60)
+client = mqtt.Client(ping)
+# client.connect('kermit', 1883, 60) if gethostname() == 'davelx' \
+#     else client.connect('us1701', 1883, 60)
+
+client.connect('52.0.117.162', 1883, 60)
 
 client.subscribe(sub)
 client.publish(sub, '{}: ping me'.format(pong))
